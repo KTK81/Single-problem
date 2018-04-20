@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <body>
+    <head>
+      <script>
+        function init() {
+            setImageOne();
+        }
+
+        function setImageOne() { setImage('suflik-1-cervena.png'); }
+
+        function setImageTwo() { setImage('suflik-1-biela.png'); }
+
+        function setImage(src) {
+            var canvas = document.getElementById("e");
+            var context = canvas.getContext("2d");
+            if (context == null) return;
+            var img = new Image();
+            img.src = src;
+            context.drawImage(img, 0, 0, 166, 276);
+        }
+      </script>
+    </head>
+  <body onload="init()">
+    <div>
+      <canvas id="e" width="166" height="276" onmouseover="setImageTwo()" onmouseout="setImageOne()">
+        <p>No Canvas Support in Browser</p>
+      </canvas>
+    </div>
+  <body>
+</html>

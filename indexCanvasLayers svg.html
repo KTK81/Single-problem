@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!--
+    <div>
+        <canvas id="canvasKorpus" style="border: 1px solid black" ></canvas>
+    </div>
+
+        <div>
+        <b id="koordinaty">mousemove X / Y</b><br>
+        <b id="koordinatyClick">click X / Y</b>
+    </div>
+    
+    <div>
+        <button id="btnVlozKorpus">Vloz korpus</button>
+        <button id="btnVlozSuflik">Vloz suflik</button>
+        <button id="resetCanvas">Reset</button>
+    </div>
+    <p>
+-->
+    
+            <div>
+            
+            <svg width="14in" height="13in" version="1.1"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <desc>This graphic links to an external image
+  </desc>
+  <image x="200" y="200" width="720px" height="780px"
+         xlink:href="korpus-v30-s20-dub.jpg">
+    <title>My image</title>
+  </image>
+</svg>
+            
+             
+<!--
+                  <svg>
+                      <svg  width="100%" height="100%">
+                           <svg width="600" height="400">
+                      <image xlink:href="korpus-v20-s20-dub.jpg" x="0" y="0" height="720px" width="780px"/>
+                      <image xlink:href="4farby.jpg" x="0" y="0" height="50px" width="50px"/>
+                      <rect id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000000"/>
+  <rect x="50" y="20" width="300" height="100" style="stroke-width:3;stroke:rgb(0,0,0)" z-index="5"/>
+          <rect width="300" height="100" style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" z-index="1"/>
+</svg>
+-->
+            
+            
+            
+            
+            
+            
+    </div>
+
+    
+<script>
+    var btnKorpus = document.getElementById("btnVlozKorpus");
+    btnKorpus.addEventListener("click", insertPicKorpus);
+    var btnSuflik = document.getElementById("btnVlozSuflik");
+    btnSuflik.addEventListener("click", insertSuflik);
+
+    
+    var canvasKorpus = document.getElementById("canvasKorpus");
+    var ctxKorpus = canvasKorpus.getContext("2d");
+    
+    function insertPicKorpus() {
+        var picture = new Image();
+        picture.src = "regal_korpus.jpg";
+        picture.onload = function() {
+            var width = picture.naturalWidth;
+            var height = picture.naturalHeight;
+            canvasKorpus.width = width;
+            canvasKorpus.height = height;
+            koordinatyClick.innerHTML = width +"/"+ height;
+            ctxKorpus.drawImage(picture, 0, 0, width, height);
+        }
+    }
+    
+    function insertSuflik() {
+        var picture = new Image();
+        picture.src = "4farby.jpg";
+        ctxKorpus.drawImage(picture, 203, 265, 350, 160);
+//        ctxKorpus.fillStyle = "lightblue";
+//        ctxKorpus.fillRect(203, 265, 350, 160);
+    }
+
+    
+    function initCanvas() {
+        ctxKorpus.canvas.addEventListener('mousemove', function(event){
+            var mouseX = event.layerX;
+            var mouseY = event.layerY;
+//            var mouseX = event.clientX - ctxKorpus.canvas.offsetLeft;
+//            var mouseY = event.clientY - ctxKorpus.canvas.offsetTop;
+            koordinaty.innerHTML = mouseX+" | "+mouseY;
+        });
+        ctxKorpus.canvas.addEventListener("click", function(e) {
+            var mouseX = event.layerX;
+            var mouseY = event.layerY;
+//            var mouseX = event.layerX;
+//            var mouseY = event.layerY;
+//            ctxKorpus.fillStyle = "orange";
+//            ctxKorpus.fillRect(mouseX-15, mouseY-15, 30, 30);
+            koordinatyClick.innerHTML = mouseX+" | "+mouseY;
+        })
+        
+    }
+//    
+    window.addEventListener('load', function(event) {
+    initCanvas();
+});
+    
+</script>
+    
+</body>
+</html>
